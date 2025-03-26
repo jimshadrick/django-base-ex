@@ -38,7 +38,7 @@ This is a sample base template that can be used for a new Django project.
 
 ## Usage
 
-- Access the admin panel at `/admin/` to manage todos.
+- Access the admin panel at `/admin/`.
 - View the home page placeholder at `/`.
 
 ## Additional Information
