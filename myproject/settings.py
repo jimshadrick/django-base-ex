@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
+    'core.apps.CoreConfig',
 ]
 
 MIDDLEWARE = [
@@ -120,6 +121,14 @@ STORAGES = {
         'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
     },
 }
+
+# Whitenoise settings
+WHITENOISE_USE_FINDERS = DEBUG  # Leverages Django’s static file finders in dev
+WHITENOISE_AUTOREFRESH = DEBUG  # Whitenoise will watch for file changes in dev
+
+# Media settings for storing uploaded data
+MEDIA_ROOT = env('MEDIA_ROOT', default=BASE_DIR / 'media')
+MEDIA_URL = env('MEDIA_URL', default='/media/')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
