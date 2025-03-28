@@ -67,6 +67,11 @@ DATABASES = {
     'default': env.dj_db_url('DATABASE_URL', default=BASE_DIR / 'db.sqlite3')
 }
 
+# Added these debugging print statements (remove in production)
+# import os
+# print(f"DATABASE_URL: {os.environ.get('DATABASE_URL')}")
+# print(f"DATABASES config: {DATABASES}")
+
 # Postgres settings for data integrity & connection handling.
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 DATABASES['default']['CONN_MAX_AGE'] = env.int('CONN_MAX_AGE', default=60)

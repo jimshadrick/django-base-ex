@@ -11,9 +11,27 @@ This is a sample base template that can be used for a new Django project.
 
 ## Setup Instructions
 
+### Docker Setup
+
 1. Clone the repository.
-2. Install the necessary dependencies using `pip install -r requirements.txt` or using `uv sync`
-3. Run the Django development server using `python manage.py runserver`.
+2. Install the necessary dependencies using `uv sync`
+3. Run `docker compose up --build`
+4. Start a shell inside the `web` container using `docker compose run --rm web bash`
+5. Run `bash release.sh` (applies migrations, collect static files, and creates a superuser)
+6. Connect to the web app at `http://0.0.0.0:8000/admin`
+
+### Local Setup (with a standalone Postgres container)
+
+1. Clone the repository.
+2. Install the necessary dependencies using `uv sync`
+3. Change the `DATABASE_URL` environment variable in `.env` to match your Postgres configuration
+    - Create the database in the Postgres container and update the hostname and db name accordingly
+    - Example: `DATABASE_URL=postgres://postgres:postgres@localhost:5432/djcoredb`
+4. Run `uv run manage.py migrate` to apply migrations
+5. Run `uv run manage.py collectstatic` to collect static files
+6. Run `uv run manage.py createsuperuser` to create a superuser
+7. Start the Django development server using `uv run manage.py runserver`
+8. Connect to the web app at `http://localhost:8000/admin`
 
 ### Package Dependencies
 
@@ -30,6 +48,14 @@ This is a sample base template that can be used for a new Django project.
 - `DJANGO_DEBUG`: Boolean value indicating whether the Django project is in debug mode.
 - `DATABASE_URL`: Database connection string for the Django project.
 - `CSRF_TRUSTED_ORIGINS`: List of trusted origins for the Django project.
+
+##### Example `.env` file
+
+DJANGO_DEBUG=True
+DJANGO_SECRET_KEY=supersecretkey
+DATABASE_URL=postgres://postgres:postgres@db:5432/djcoredb
+DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
+CSRF_TRUSTED_ORIGINS=http://localhost:8000,http://127.0.0.1:8000
 
 ### Additional Configuration
 

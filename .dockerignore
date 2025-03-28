@@ -1,0 +1,47 @@
+# Python virtual environments
+.venv
+venv
+env
+
+# Python bytecode and cache files
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info
+dist
+build
+
+# Local development files
+*.log
+*.pid
+*.seed
+*.sqlite3
+db.sqlite3  # Default Django SQLite database
+
+# Git-related files
+.git
+.gitignore
+
+# Environment variable files
+.env
+.env.local
+.env.development
+.env.production
+
+# Editor/IDE files
+.idea/  # PyCharm/IntelliJ
+.vscode/  # Visual Studio Code
+*.sublime-project
+*.sublime-workspace
+
+# Dependency directories (if not managed by uv or similar)
+node_modules
+staticfiles  # Collected static files (if using collectstatic)
+
+# Miscellaneous
+*.bak
+*.swp
+*.md  # Exclude READMEs or other markdown files if not needed
+Dockerfile  # Optional: exclude Dockerfile itself if not needed in image
